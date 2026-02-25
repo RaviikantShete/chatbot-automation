@@ -10,7 +10,6 @@ def send_message(wait, message):
     input_box = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "input, textarea")))
     input_box.send_keys(message + Keys.RETURN)
 
-# Initialize WebDriver
 service = Service("C:/selenium/chromedriver.exe")
 driver = webdriver.Chrome(service=service)
 driver.maximize_window()
@@ -36,17 +35,12 @@ try:
         print(f"You: {question}")
         send_message(wait, question)
         
-        # Wait for the bot to type and respond
         time.sleep(5)        
-        # Extract the response
-        # IMPORTANT: You may need to change the CSS Selector below to match the exact class 
-        # used by the chatbot's text bubbles on this specific website.
+        
         try:
-            # We look for common chatbot message classes. 
             message_elements = driver.find_elements(By.CSS_SELECTOR, ".message, .bot-message, .chat-bubble, .text-content, p")
             
             if message_elements:
-                # We found the response elements, print the verification message
                 print("Bot: Response received")
             else:
                 print("Bot: [Could not find response element on page]")
@@ -72,4 +66,5 @@ except Exception as main_error:
     print(f"An error occurred during execution: {main_error}")
     
 finally:
+
     driver.quit()
