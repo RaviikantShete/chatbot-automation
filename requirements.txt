@@ -1,4 +1,2 @@
 selenium
-<<<<<<< HEAD
-=======
->>>>>>> origin/main
+webdriver-manager
